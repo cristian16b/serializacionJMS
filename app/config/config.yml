@@ -29,6 +29,10 @@ framework:
         handler_id: ~
     fragments: ~
     http_method_override: true
+    serializer: 
+    { 
+        genable_annotations: true 
+    }
 
 # Twig Configuration
 twig:

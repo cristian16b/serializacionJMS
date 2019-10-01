@@ -13,10 +13,18 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        die;
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+            
         ));
     }
+    
+    /**
+     * @Route("/serializer/serializar", name="homepage")
+     */
+     public function serializarAction(Request $request) {
+        $serializer = $this->get('serializer');
+        dump($serializer);
+        die;
+     }
 }
