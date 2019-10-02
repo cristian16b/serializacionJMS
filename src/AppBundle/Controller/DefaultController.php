@@ -10,6 +10,8 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use AppBundle\Controller\Persona;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 class DefaultController extends Controller
 {
@@ -23,13 +25,29 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/serializer/serializar", name="serializer")
+     * @Route("/serializar", name="serializer")
      */
      public function serializarAction(Request $request) {
         $serializer = $this->get('serializer');
         
-        
-        
+        $person = new Persona();
+        $person->setName('foo');
+        $person->setAge(99);
+
+        $jsonContent = $serializer->serialize($person, 'json');
+        return $jsonContent;
+//        return new JsonResponse($jsonContent,200);
      }
      
+     /**
+     * @Route("/deserializar", name="deserializer")
+     */
+     public function deserializarAction(Request $request) {
+        $persona = $this->serializarAction($request);
+
+        $serializer = $this->get('serializer')->deserialize($persona,'AppBundle\Controller\Persona','json');
+
+        dump($serializer->getName(). ' ' . $serializer->getAge());
+        die;
+     }
 }
