@@ -45,7 +45,8 @@
         ]
     },
     "config": {
-        "bin-dir": "bin",
+	"bin-dir": "/home/vagrant/serializadoJMS/bin",        
+        "vendor-dir":"/home/vagrant/serializadoJMS/vendor",
         "platform": {
             "php": "5.6"
         },
